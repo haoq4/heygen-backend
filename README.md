@@ -127,4 +127,9 @@ heygen-backend/
 ├── README.md                         # Project documentation
 ```
 
+## Test Pagr Screenshot
+Here is a screenshot of the test page:
 
+![Test Page Screenshot](https://github.com/haoq4/heygen-backend/blob/main/images/screenshot.png)
+
+The test page allows users to configure the result and delay of the simulated video translation backend.
