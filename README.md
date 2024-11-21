@@ -127,7 +127,8 @@ heygen-backend/
 ├── README.md                         # Project documentation
 ```
 
-## Test Pagr Screenshot
+---
+## Test Page Screenshot
 Here is a screenshot of the test page:
 
 ![Test Page Screenshot](https://github.com/haoq4/heygen-backend/blob/main/images/screenshot.png)
