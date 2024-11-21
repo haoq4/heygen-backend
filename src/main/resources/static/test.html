@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heygen Test Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, button {
+            margin: 5px;
+        }
+        .logs {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-y: scroll;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<h1>Heygen Test Interface</h1>
+<p>Use this interface to set the delay and result of the simulated video translation backend.</p>
+
+<!-- Test Parameter Form -->
+<form id="test-form">
+    <label for="result">Select Result:</label>
+    <select id="result" name="result">
+        <option value="completed">Completed</option>
+        <option value="error">Error</option>
+    </select>
+    <br>
+    <label for="delay">Set Delay (seconds):</label>
+    <input type="number" id="delay" name="delay" min="1" value="10">
+    <br>
+    <button type="button" onclick="setTestParameters()">Set Parameters</button>
+</form>
+
+<h2>Response</h2>
+<pre id="response">No response yet...</pre>
+
+<!-- Run Test Button -->
+<h2>Test Runner</h2>
+<button type="button" onclick="runTest()">Run Test</button>
+<h3>Test Logs:</h3>
+<div id="logs" class="logs">Logs will appear here...</div>
+
+<script>
+    // Function to set test parameters
+    async function setTestParameters() {
+        const result = document.getElementById("result").value;
+        const delay = document.getElementById("delay").value;
+
+        // Send test parameters to backend
+        const response = await fetch(`/status/test?result=${result}&delay=${delay}`, {
+            method: 'POST'
+        });
+        const responseText = await response.text();
+
+        // Update response on the page
+        document.getElementById("response").innerText = responseText;
+    }
+
+    // Function to run the test and display logs
+    async function runTest() {
+        const logsContainer = document.getElementById("logs");
+        logsContainer.innerText = ""; // Clear previous logs
+
+        const response = await fetch(`/status/run-test`);
+        const logs = await response.json();
+
+        // Display logs on the page
+        logs.forEach(log => {
+            logsContainer.innerText += log + "\n";
+        });
+    }
+</script>
+</body>
+</html>

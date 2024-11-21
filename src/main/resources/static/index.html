@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heygen Backend</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        h2 {
+            color: #34495e;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 3px;
+            color: #e74c3c;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #34495e;
+        }
+    </style>
+</head>
+<body>
+<h1>Hello, Welcome to Heygen Backend!</h1>
+
+<div class="section">
+    <h2>About This Program</h2>
+    <p>This program simulates a video translation backend with a configurable delay. The backend provides a status API that returns whether the translation is <strong>pending</strong>, <strong>completed</strong>, or <strong>error</strong>. A client library is used to interact with this API and implements an intelligent polling mechanism to fetch the status efficiently.</p>
+</div>
+
+<div class="section">
+    <h2>How to Run the Program</h2>
+    <ol>
+        <li>Clone the project repository from GitHub:
+            <pre><code>git clone <your-repo-url></code></pre>
+        </li>
+        <li>Navigate to the project directory:
+            <pre><code>cd heygen-backend</code></pre>
+        </li>
+        <li>Start the backend server using Maven:
+            <pre><code>mvn spring-boot:run</code></pre>
+            <p>This will start the server on <code>http://localhost:8080</code>.</p>
+        </li>
+        <li>Run the integration test to interact with the API:
+            <pre><code>java -cp target/classes com.heygen.test.IntegrationTest</code></pre>
+        </li>
+    </ol>
+</div>
+
+<div class="section">
+    <h2>Test Parameters via UI</h2>
+    <p>Navigate to the <code>/test</code> page to set up the test parameters (e.g., delay and result). This page provides an interactive way to test the backend functionality.</p>
+    <button onclick="navigateToTest()">Go to Test Page</button>
+</div>
+
+<div class="section">
+    <h2>What Will Happen</h2>
+    <ul>
+        <li>The backend server will simulate a translation task that takes the specified delay to complete.</li>
+        <li>The client library or test page will poll the <code>/status</code> endpoint and log the responses.</li>
+        <li>The final result will be either <code>completed</code> or <code>error</code>, depending on the user's input.</li>
+        <li>Example output:
+            <pre>
+Starting integration test...
+Request #1 at 2024-11-20T04:48:24.977 - Response: pending
+Task is still pending, retrying...
+Request #5 at 2024-11-20T04:48:33.223 - Response: completed
+Task completed successfully!
+Integration Test Completed - Final Result: completed
+            </pre>
+        </li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>How to Verify</h2>
+    <ul>
+        <li>Open a browser and navigate to <code>http://localhost:8080/status</code> to manually check the API response.</li>
+        <li>Navigate to <code>http://localhost:8080/test</code> to test the API with custom parameters.</li>
+        <li>Check the integration test logs for the task status updates and the final result.</li>
+        <li>(The easiest way is go to test page using the Heygen Test Interface.)</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Contact</h2>
+    <p>If you have any issues running the program, feel free to reach out to the developer via the GitHub repository.</p>
+    <p>Contact Email: haoq4@g.ucla.edu</p>
+</div>
+
+<script>
+    // Navigate to the /test page
+    function navigateToTest() {
+        window.location.href = "/test";
+    }
+</script>
+</body>
+</html>
